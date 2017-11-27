@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Full/Half,Quater-Hour Event Notification</title>
+    <style>
+      body {
+        text-align: center;
+      }
+
+      #hydrateImage {
+        width: 100px;
+        margin: 5px;
+      }
+
+      button {
+        margin: 5px;
+        outline: none;
+      }
+
+      button:hover {
+        outline: #80DEEA dotted thick;
+      }
+    </style>
+  </head>
+  <body>
+      <!-- An Alarm delay of less than the minimum 1 minute will fire
+      in approximately 1 minute incriments if released -->
+	  
+	  <h2>Setup Intervall</h2>
+	  
+      <button id='sampleMinute' value='2'>2 Minutes</button>
+      <button id='15min' value='15'>15 Minutes</button>
+      <button id='30min' value='30'>30 Minutes</button>
+	  <button id='60min' value='60'>60 Minutes</button>
+      <button id='cancelAlarm'>Cancel Alarm</button>
+   <!-- link to non-persistent background script -->
+   <script src="popup.js"></script>
+  </body>
+</html>
