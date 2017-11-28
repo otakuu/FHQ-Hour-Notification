@@ -10,7 +10,7 @@ function setAlarm(event) {
   var mins = d.getMinutes();
   var secs = d.getSeconds();
   
-  var diff = minutes - (mins % minutes) - 1; //14:27:14 = 2
+  var diff = minutes - (mins % minutes) - 1; //14:45:04 = 2
   var miniDiff = 1 - ((secs * 100) / 6000);
   
   //alert('delay:' + (diff-miniDiff));
