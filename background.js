@@ -1,3 +1,5 @@
+//https://developer.chrome.com/apps/notifications
+
 'use strict';
 
 chrome.alarms.onAlarm.addListener(function() {
@@ -8,7 +10,7 @@ chrome.alarms.onAlarm.addListener(function() {
       type:     'basic',
       iconUrl:  getIcon(),
       title:    getTime(),
-      message:  ''
+      message:  '' //requireInteraction: True
   });
   
 });

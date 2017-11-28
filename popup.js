@@ -7,16 +7,23 @@ function setAlarm(event) {
   
   //get time to desired alarm
   var d = new Date();
+  var hrs = d.getHours();
   var mins = d.getMinutes();
-  var secs = d.getSeconds();
   
-  var diff = minutes - (mins % minutes) - 1; //14:45:04 = 2
-  var miniDiff = 1 - ((secs * 100) / 6000);
+  var firstScheduled = (Math.floor((mins + minutes) / minutes)) * minutes;
   
-  //alert('delay:' + (diff-miniDiff));
-  //alert('periodInMinutes: ' + minutes);
+  if(firstScheduled==60){
+	firstScheduled=0;  
+  }
   
-  chrome.alarms.create({delayInMinutes: diff+miniDiff, periodInMinutes:minutes});
+  if(firstScheduled==0){
+	d.setHours(hrs+1);  
+  }
+  
+  d.setMinutes(firstScheduled);
+  d.setSeconds(0);
+  
+  chrome.alarms.create({scheduledTime: d.getTime(), periodInMinutes: minutes});
   window.close();
 }
 
