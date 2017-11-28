@@ -2,21 +2,26 @@
 
 chrome.alarms.onAlarm.addListener(function() {
    
+  chrome.browserAction.setBadgeText({text: ''+getTime()});
+   
   chrome.notifications.create({
       type:     'basic',
-      iconUrl:  'dong.png',
-      title:    'Es isch: '+new Date().getHours() +':'+new Date().getMinutes(),
+      iconUrl:  getIcon(),
+      title:    getTime(),
       message:  ''
-  });
-	  
-  //delete previous
-  chrome.alarms.clearAll();
-  
-  //set up next alarm
-  chrome.storage.sync.get(['minutes'], function(item) {
-  chrome.browserAction.setBadgeText({text: ''+item.minutes});
-	
-  chrome.alarms.create({delayInMinutes: item.minutes});
   });
   
 });
+
+function getIcon(){
+		var mins = new Date().getMinutes();	
+		return mins+'.png'; 
+}
+
+function getTime(){
+	
+	var currentTime = new Date();
+	var mins = '0'+currentTime.getMinutes(); //with nice preceding zero, if needed
+
+	return ''+currentTime.getHours() + ':'+mins.slice(-2);
+}
