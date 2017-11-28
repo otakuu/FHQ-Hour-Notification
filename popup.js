@@ -23,7 +23,11 @@ function setAlarm(event) {
   d.setMinutes(firstScheduled);
   d.setSeconds(0);
   
-  chrome.alarms.create({scheduledTime: d.getTime(), periodInMinutes: minutes});
+  //clear old ones
+  chrome.alarms.clearAll();
+  
+  //set new
+  chrome.alarms.create({when: d.getTime(), periodInMinutes: minutes});
   window.close();
 }
 
