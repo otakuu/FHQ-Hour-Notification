@@ -10,13 +10,13 @@ function setAlarm(event) {
   var mins = d.getMinutes();
   var secs = d.getSeconds();
   
-  var diff = minutes - (mins % minutes);
-  var miniDiff = (secs * 100) / 6000;
+  var diff = minutes - (mins % minutes) - 1; //14:27:14 
+  var miniDiff = 60 - ((secs * 100) / 6000);
   
   //alert('delay:' + (diff-miniDiff));
   //alert('periodInMinutes: ' + minutes);
   
-  chrome.alarms.create({delayInMinutes: diff-miniDiff, periodInMinutes:minutes});
+  chrome.alarms.create({delayInMinutes: diff+miniDiff, periodInMinutes:minutes});
   window.close();
 }
 
