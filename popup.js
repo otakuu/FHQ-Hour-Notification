@@ -1,9 +1,7 @@
-'use strict';
-
 function setAlarm(event) {
 	
-  let minutes = parseFloat(event.target.id);
-  chrome.browserAction.setBadgeText({text: ''+minutes});
+  let minutes = 15; //parseFloat(event.target.id);
+  chrome.browserAction.setBadgeText({text: getTime(new Date())});
   
   //get time to desired alarm
   var d = new Date();
@@ -21,13 +19,13 @@ function setAlarm(event) {
   }
   
   d.setMinutes(firstScheduled);
-  d.setSeconds(0);
+  d.setSeconds(0);  //very important
   
   //clear old ones
   chrome.alarms.clearAll();
   
   //set new
-  chrome.alarms.create({when: d.getTime(), periodInMinutes: minutes});
+  chrome.alarms.create({when: d.getTime()});
   window.close();
 }
 
@@ -37,7 +35,13 @@ function clearAlarm() {
   window.close();
 }
 
+function getTime(date){
+	
+	var mins = '0'+date.getMinutes(); //with nice preceding zero, if needed
+	var hrs = '0'+date.getHours();
+
+	return hrs.slice(-2) + mins.slice(-2);
+}
+
 document.getElementById('15min').addEventListener('click', setAlarm);
-document.getElementById('30min').addEventListener('click', setAlarm);
-document.getElementById('60min').addEventListener('click', setAlarm);
 document.getElementById('cancelAlarm').addEventListener('click', clearAlarm);
