@@ -1,6 +1,6 @@
 chrome.alarms.onAlarm.addListener(function() {
 	
-   var d = new Date();
+  var d = new Date();
    
   chrome.browserAction.setBadgeText({text: ''+getTime(d).replace(':','')});
    
@@ -35,7 +35,7 @@ chrome.alarms.onAlarm.addListener(function() {
 
 function getIcon(){
 		var mins = new Date().getMinutes();	
-		return mins+'.png'; 
+		return mins.charAt(0)+'.png'; //first char
 }
 
 function getTime(date){

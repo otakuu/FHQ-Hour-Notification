@@ -47,4 +47,3 @@ function getTime(date){
 
 document.getElementById('15min').addEventListener('click', setAlarm);
 document.getElementById('cancelAlarm').addEventListener('click', clearAlarm);
-document.getElementById('onoff').addEventListener('click', onOff);
