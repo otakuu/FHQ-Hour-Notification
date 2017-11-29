@@ -1,7 +1,7 @@
 function setAlarm() {
 	
   var minutes = 15; 
-  
+    
   chrome.browserAction.setBadgeText({text: getTime(new Date())});
   
   //get time to desired alarm

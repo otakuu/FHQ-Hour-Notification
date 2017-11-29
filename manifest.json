@@ -1,7 +1,7 @@
 {
   "name": "Quater-Hour Event Notification",
   "description": "Dong, dong, dong...",
-  "version": "2.2",
+  "version": "2.3",
   "manifest_version": 2,
   "permissions": ["alarms", "notifications"],
   "background": {
