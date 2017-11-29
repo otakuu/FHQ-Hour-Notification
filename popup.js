@@ -1,6 +1,7 @@
-function setAlarm(event) {
+function setAlarm() {
 	
-  let minutes = 15; //parseFloat(event.target.id);
+  var minutes = 15; 
+  
   chrome.browserAction.setBadgeText({text: getTime(new Date())});
   
   //get time to desired alarm
@@ -35,6 +36,7 @@ function clearAlarm() {
   window.close();
 }
 
+
 function getTime(date){
 	
 	var mins = '0'+date.getMinutes(); //with nice preceding zero, if needed
@@ -45,3 +47,4 @@ function getTime(date){
 
 document.getElementById('15min').addEventListener('click', setAlarm);
 document.getElementById('cancelAlarm').addEventListener('click', clearAlarm);
+document.getElementById('onoff').addEventListener('click', onOff);
