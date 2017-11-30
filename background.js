@@ -8,7 +8,7 @@ chrome.alarms.onAlarm.addListener(function() {
       type:     'basic',
       iconUrl:  getIcon(),
       title:    getTime(new Date()),
-      message:  '' //requireInteraction: True
+      message:  formatDate(new Date()) //requireInteraction: True
   });
   
   //setup next notif
@@ -40,8 +40,34 @@ function getIcon(){
 
 function getTime(date){
 	
-	var mins = '0'+date.getMinutes(); //with nice preceding zero, if needed
+	var minsDate = date.getMinutes();
+	
+	var mins = '0'+minsDate; 
 	var hrs = '0'+date.getHours();
+	
+	if(minsDate.toString().charAt(0)=='0' || minsDate.toString().charAt(0)=='3'){
+		mins = minsDate.toString().charAt(0)+'0';
+	}
+	
+	if(minsDate.toString().charAt(0)=='1' || minsDate.toString().charAt(0)=='4'){
+		mins = minsDate.toString().charAt(0)+'5';
+	}
 
 	return hrs.slice(-2) + ':' + mins.slice(-2);
+}
+
+	
+function formatDate(date) {
+  var monthNames = [
+    "Januar", "Februar", "März",
+    "April", "Mai", "Juni", "Juli",
+    "August", "September", "Oktober",
+    "November", "Dezember"
+  ];
+
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  return day + '. ' + monthNames[monthIndex] + ' ' + year;
 }

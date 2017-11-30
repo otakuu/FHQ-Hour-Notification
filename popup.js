@@ -1,15 +1,13 @@
 function setAlarm() {
 	
-  var minutes = 15; 
-    
-  chrome.browserAction.setBadgeText({text: getTime(new Date())});
-  
+  var MINUTES = 15; 
+
   //get time to desired alarm
   var d = new Date();
   var hrs = d.getHours();
   var mins = d.getMinutes();
   
-  var firstScheduled = (Math.floor((mins + minutes) / minutes)) * minutes;
+  var firstScheduled = (Math.floor((mins + MINUTES) / MINUTES)) * MINUTES;
   
   if(firstScheduled==60){
 	firstScheduled=0;  
@@ -27,6 +25,18 @@ function setAlarm() {
   
   //set new
   chrome.alarms.create({when: d.getTime()});
+  
+  //get previous
+  var lastQuater = firstScheduled - MINUTES;
+  if(lastQuater < 0){
+	  lastQuater=45;
+	  d.setHours(hrs-1);  
+  }
+  d.setMinutes(lastQuater);
+  
+  chrome.browserAction.setBadgeText({text: getTime(d)});
+  //chrome.browserAction.setBadgeBackgroundColor({color: 'red'});
+  
   window.close();
 }
 
