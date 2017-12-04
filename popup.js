@@ -24,13 +24,14 @@ function setAlarm() {
   chrome.alarms.clearAll();
   
   //set new
+  chrome.alarms.clearAll();
   chrome.alarms.create({when: d.getTime()});
   
   //get previous
   var lastQuater = firstScheduled - MINUTES;
   if(lastQuater < 0){
 	  lastQuater=45;
-	  d.setHours(hrs-1);  
+	  d.setHours(hrs);  
   }
   d.setMinutes(lastQuater);
   

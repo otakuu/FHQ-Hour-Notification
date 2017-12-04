@@ -3,6 +3,15 @@ chrome.alarms.onAlarm.addListener(function() {
   var d = new Date();
    
   chrome.browserAction.setBadgeText({text: ''+getTime(d).replace(':','')});
+  
+  //clear all old  notifs
+  chrome.notifications.getAll((items) => {
+  if ( items ) {
+      for (let key in items) {
+          chrome.notifications.clear(key);
+      }
+	}
+  });
    
   chrome.notifications.create({
       type:     'basic',
@@ -29,6 +38,7 @@ chrome.alarms.onAlarm.addListener(function() {
   d.setSeconds(0); // very important
   
   //set new
+  chrome.alarms.clearAll();
   chrome.alarms.create({when: d.getTime()});
   
 });
