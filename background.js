@@ -44,23 +44,32 @@ chrome.alarms.onAlarm.addListener(function() {
 });
 
 function getIcon(){
-		var mins = new Date().getMinutes();	
+		var mins = new Date().getMinutes();
+		
+		if(mins<=9){
+			mins = '0'+mins; 
+		}
+		
 		return mins.toString().charAt(0)+'.png'; //first char
 }
 
 function getTime(date){
 	
 	var minsDate = date.getMinutes();
+	var mins = minsDate; 
 	
-	var mins = '0'+minsDate; 
-	var hrs = '0'+date.getHours();
-	
-	if(minsDate.toString().charAt(0)=='0' || minsDate.toString().charAt(0)=='3'){
-		mins = minsDate.toString().charAt(0)+'0';
+	if(minsDate<=9){
+		mins = '0'+minsDate; 
 	}
 	
-	if(minsDate.toString().charAt(0)=='1' || minsDate.toString().charAt(0)=='4'){
-		mins = minsDate.toString().charAt(0)+'5';
+	var hrs = '0'+date.getHours();
+	
+	if(mins.toString().charAt(0)=='0' || mins.toString().charAt(0)=='3'){
+		mins = mins.toString().charAt(0)+'0';
+	}
+	
+	if(mins.toString().charAt(0)=='1' || mins.toString().charAt(0)=='4'){
+		mins = mins.toString().charAt(0)+'5';
 	}
 
 	return hrs.slice(-2) + ':' + mins.slice(-2);
