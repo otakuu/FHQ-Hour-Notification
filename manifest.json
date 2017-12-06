@@ -1,7 +1,7 @@
 {
   "name": "Quater-Hour Notification",
-  "description": "Dong, dong, dong, dong...",
-  "version": "2.6",
+  "description": "This plugin displays ever quater-hour a notification with the current time.",
+  "version": "2.7",
   "manifest_version": 2,
   "permissions": ["alarms", "notifications"],
   "background": {
