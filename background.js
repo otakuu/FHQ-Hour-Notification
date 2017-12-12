@@ -1,19 +1,14 @@
 chrome.browserAction.onClicked.addListener(function(tab) { 
 	
 	chrome.browserAction.getBadgeText({}, function(badgeText) {
-	
 		if(badgeText.length<4){	
 			//no badge is set - ENABLE
 			setAlarm();
-			
 		}else{
-			// badge is set - DIABLE
+			// badge is set - DISABLE
 			clearAlarm();
 		}
-
 	});
-	
-
 });
 
 
@@ -96,12 +91,7 @@ function getTime(date){
 
 	
 function formatDate(date) {
-  var monthNames = [
-    "Januar", "Februar", "März",
-    "April", "Mai", "Juni", "Juli",
-    "August", "September", "Oktober",
-    "November", "Dezember"
-  ];
+  var monthNames = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
 
   var day = date.getDate();
   var monthIndex = date.getMonth();
@@ -109,8 +99,6 @@ function formatDate(date) {
 
   return day + '. ' + monthNames[monthIndex] + ' ' + year;
 }
-
-
 
 function setAlarm() {
 	
@@ -150,20 +138,10 @@ function setAlarm() {
   d.setMinutes(lastQuater);
   
   chrome.browserAction.setBadgeText({text: getTime(d)});
-  //chrome.browserAction.setBadgeBackgroundColor({color: 'red'});
   
 }
 
 function clearAlarm() {
   chrome.browserAction.setBadgeText({text: ''});
   chrome.alarms.clearAll();
-}
-
-
-function getTime(date){
-	
-	var mins = '0'+date.getMinutes(); //with nice preceding zero, if needed
-	var hrs = '0'+date.getHours();
-
-	return hrs.slice(-2) + mins.slice(-2);
 }
