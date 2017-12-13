@@ -137,7 +137,7 @@ function setAlarm() {
   }
   d.setMinutes(lastQuater);
   
-  chrome.browserAction.setBadgeText({text: getTime(d)});
+  chrome.browserAction.setBadgeText({text: ''+getTime(d).replace(':','')});
   
 }
 
