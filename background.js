@@ -1,3 +1,8 @@
+chrome.windows.onCreated.addListener(function() {
+	clearAlarm();
+	setAlarm();
+});
+
 chrome.browserAction.onClicked.addListener(function(tab) { 
 	
 	chrome.browserAction.getBadgeText({}, function(badgeText) {
