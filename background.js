@@ -23,7 +23,7 @@ chrome.alarms.onAlarm.addListener(function() {
    
   chrome.browserAction.setBadgeText({text: ''+getTime(d).replace(':','')});
   
-  //clear all old  notifs
+  //clear all old notifs
   chrome.notifications.getAll((items) => {
   if ( items ) {
       for (let key in items) {
@@ -39,27 +39,8 @@ chrome.alarms.onAlarm.addListener(function() {
       message:  formatDate(new Date()) //requireInteraction: True
   });
   
-  //setup next notif
-  var hrs = d.getHours();
-  var mins = d.getMinutes();
-  
-  var firstScheduled = (Math.floor((mins + 15) / 15)) * 15;
-  
-  if(firstScheduled==60){
-	firstScheduled=0;  
-  }
-  
-  if(firstScheduled==0){
-	d.setHours(hrs+1);  
-  }
-  
-  d.setMinutes(firstScheduled);
-  d.setSeconds(0); // very important
-  
-  //set new
-  chrome.alarms.clearAll();
-  chrome.alarms.create({when: d.getTime()});
-  
+   console.log('alarm fired: '+getTime(new Date()));
+   
 });
 
 function getIcon(){
@@ -131,8 +112,7 @@ function setAlarm() {
   chrome.alarms.clearAll();
   
   //set new
-  chrome.alarms.clearAll();
-  chrome.alarms.create({when: d.getTime()});
+  chrome.alarms.create({when: d.getTime(), periodInMinutes: MINUTES});
   
   //get previous
   var lastQuater = firstScheduled - MINUTES;
